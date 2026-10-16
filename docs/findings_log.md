@@ -22,7 +22,7 @@ Each entry: what I found, why it matters, and what I decided.
 - Found: Womens E-Mail: 21,387 / Mens E-Mail: 21,307 / No E-Mail: 21,306.
   The biggest and smallest arm differ by 81 customers.
 - Why it matters: Almost equal arms are a sign that the random split worked. If they were very different, I could not trust the experiment.
-- Decision: Check it with a sample ratio test (chi-square) in Phase 5.
+- Decision: Check it with a sample ratio test (chi-square) later.
 
 ## No customer has mens = 0 and womens = 0
 - Found: Every customer bought from at least one category last year.
@@ -35,6 +35,5 @@ Each entry: what I found, why it matters, and what I decided.
   29.99 is the smallest spend and 499.00 is the biggest. Only 2 buyers spent between 450 and 498.99, but 12 spent exactly 499.00. Also, history has the same minimum, 29.99.
 - Conclusion: Spend is a total for two weeks, not the price of one product.
   If 499 was a product price, some people would buy it plus something else and spend more than 499. Nobody did. So I think the data was cut at both ends: small values were raised to 29.99 and big values were lowered to 499.00. I can't be 100% sure without the data owner, but the numbers point to this.
-- Why it matters: The real big and small purchases are lost, so average spend is not the real average. All arms are affected the same way, so the
-  difference between arms is less affected. But if an email worked by making people buy a lot, part of that effect is hidden.
-- Decision: I can't get the original values back, so I keep the data as it is and add this to the limitations in the README.
+- Why it matters: The real big and small purchases are lost, so average spend is not the real average. All arms are affected the same way, so the difference between arms is less affected. But if an email worked by making people buy a lot, part of that effect is hidden.
+- Decision: I can't get the original values back, so I keep the data as it is and add this to the limitations in the README file.
