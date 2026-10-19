@@ -3,8 +3,6 @@
 **Project:** Hillstrom Email Experiment
 **Author:** Marta Narozhnyak
 **Date committed:** 2026-10-14
-**Reworded:** 2026-10-19, simpler language only. All decisions, metrics and
-numbers are the same as in the original commit.
 
 I wrote this plan before looking at any results by experiment arm.
 
@@ -20,7 +18,7 @@ The final answer will be a targeting recommendation with its expected extra prof
 ## 2. Data
 
 - Source: MineThatData E-Mail Analytics Challenge (Kevin Hillstrom, 2008).
-- 64,000 customers who bought something in the last 12 months.
+- 64,000 customers who bought goods in the last 12 months.
 - They were split at random into three groups of about 1/3 each:
   Mens E-Mail, Womens E-Mail, and No E-Mail (control).
 - Results were tracked for two weeks after the email: `visit`, `conversion`, `spend`.
@@ -51,7 +49,7 @@ For each email (Mens and Womens) compared with no email:
 - Significance level: α = 0.05.
 - I run two main tests (Mens vs control, Womens vs control),
   so I correct for that with the **Holm** method.
-- Mens vs Womens directly is a second question, reported with its own CI.
+- Mens vs Womens directly is a second question, reported with its own CI (Confidence interval).
 - Every result is shown as an absolute lift (percentage points) and a relative lift (%),
   both with a 95% CI. I never report a p-value alone.
 - If the group-size check or the balance check fails, I report it as a warning
