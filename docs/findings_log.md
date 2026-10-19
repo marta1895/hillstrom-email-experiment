@@ -37,3 +37,11 @@ Each entry: what I found, why it matters, and what I decided.
   If 499 was a product price, some people would buy it plus something else and spend more than 499. Nobody did. So I think the data was cut at both ends: small values were raised to 29.99 and big values were lowered to 499.00. I can't be 100% sure without the data owner, but the numbers point to this.
 - Why it matters: The real big and small purchases are lost, so average spend is not the real average. All arms are affected the same way, so the difference between arms is less affected. But if an email worked by making people buy a lot, part of that effect is hidden.
 - Decision: I can't get the original values back, so I keep the data as it is and add this to the limitations in the README file.
+
+## Arms are balanced on pre-experiment features
+- Found: The largest gap is phone channel: 44.20% in womens vs 43.37% in mens, a difference of 0.83 percentage points. Web channel is close (0.80 pp).
+    All other percentage gaps are below 0.6 pp.
+    Average history differs by less than $2 (240.88 vs 242.84), under 1%.
+    Average recency is almost the same in all arms (5.75 vs 5.77 months).
+- Why it matters: So the random split worked, and differences between arms in the results can be explained by the emails, not by different customers.
+- Decision: continue the analysis, and confirm balance with a statistical measure later.
