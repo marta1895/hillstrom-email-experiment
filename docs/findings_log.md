@@ -45,3 +45,16 @@ Each entry: what I found, why it matters, and what I decided.
     Average recency is almost the same in all arms (5.75 vs 5.77 months).
 - Why it matters: So the random split worked, and differences between arms in the results can be explained by the emails, not by different customers.
 - Decision: continue the analysis, and confirm balance with a statistical measure later.
+
+## Mens email works for all customer groups; Womens email does not
+- Found: The Mens email lifts conversion in every segment, mostly +0.5 to +0.9 pp.
+  Biggest lift: customers who bought both men's and women's items
+  (0.93% -> 2.43%, +1.50 pp). It also works for women's only buyers
+  (0.52% -> 1.09%, +0.57 pp). The Womens email does almost nothing for men's only buyers (0.55% -> 0.61%, +0.06 pp).
+- Why it matters: This explains why Mens is stronger overall. It reaches all customers, while the Womens email mostly works only for people who already buy women's items. It also means sending the Womens email to men's only buyers is likely wasted.
+- Decision: Use this in the targeting analysis. Results are exploratory (about 20 segments tested), so they need confidence intervals in the statistical analysis before any recommendation.
+
+## Some segment results are not reliable
+- Found: History segments $750-1,000 and $1,000+ have fewer than 1,000 customers per arm. Their lifts look very large (up to +2.00 pp, +415%), but are based on only about 5-15 buyers. The Womens email also shows small negative lifts in two history segments ($200-350: -0.07 pp, $350-500: -0.22 pp).
+- Why it matters: With few buyers, a couple of purchases more or less changes the result completely. And when about 20 segments are tested, a few results go the "wrong" way just by luck.
+- Decision: Ignore segments marked enough_customers = FALSE. Do not explain the negative lifts as a real effect of the email; note them as likely noise.
