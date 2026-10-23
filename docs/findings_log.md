@@ -1,6 +1,6 @@
 # Findings Log
  
-Data findings from profiling and validation (Phase 2).
+Data findings from profiling and validation.
 Each entry: what I found, why it matters, and what I decided.
 
 ## Misspelled zip code value
@@ -32,7 +32,7 @@ Each entry: what I found, why it matters, and what I decided.
 ## Spend values pile up at the minimum and the maximum
 - Found: Almost every spend value is unique. Only two values repeat a lot: 29.99 (136 buyers) and 499.00 (12 buyers). No other value repeats more than 2 times.
 - Checked: I looked at the 10 most common spend values and at the min and max.
-  29.99 is the smallest spend and 499.00 is the biggest. Only 2 buyers spent between 450 and 498.99, but 12 spent exactly 499.00. Also, history has the same minimum, 29.99.
+  29.99 is the smallest spend and 499.00 is the biggest. Only 2 buyers spent between 450 and 498.99, but 12 spent exactly 499.00. Also, history has the same minimum, 29.99, and 7,947 customers (12.42%) have a past-year history of exactly $29.99.
 - Conclusion: Spend is a total for two weeks, not the price of one product.
   If 499 was a product price, some people would buy it plus something else and spend more than 499. Nobody did. So I think the data was cut at both ends: small values were raised to 29.99 and big values were lowered to 499.00. I can't be 100% sure without the data owner, but the numbers point to this.
 - Why it matters: The real big and small purchases are lost, so average spend is not the real average. All arms are affected the same way, so the difference between arms is less affected. But if an email worked by making people buy a lot, part of that effect is hidden.
@@ -58,3 +58,27 @@ Each entry: what I found, why it matters, and what I decided.
 - Found: History segments $750-1,000 and $1,000+ have fewer than 1,000 customers per arm. Their lifts look very large (up to +2.00 pp, +415%), but are based on only about 5-15 buyers. The Womens email also shows small negative lifts in two history segments ($200-350: -0.07 pp, $350-500: -0.22 pp).
 - Why it matters: With few buyers, a couple of purchases more or less changes the result completely. And when about 20 segments are tested, a few results go the "wrong" way just by luck.
 - Decision: Ignore segments marked enough_customers = FALSE. Do not explain the negative lifts as a real effect of the email; note them as likely noise.
+
+## Spend is mostly $0 with a long tail, not bell-shaped
+- Found: Most customers spent nothing (99.43% in control, 98.75% in mens, 99.12% in womens). The few buyers spent from $29.99 up to $499, and the median is lower than the average in every arm (mens: $66.98 vs $113.53).
+  So spend looks like a tall wall at $0 with a thin tail, not a bell shape.
+- Why it matters: The t-test is less reliable when data is not bell-shaped.
+  The average spend per customer describes almost nobody, because nearly everyone spent $0 and a few spent a lot.
+- Decision: Test the spend lift with the bootstrap, which does not need a bell shape, and compare it with a t-test. If both agree, the result is solid. If they disagree, trust the bootstrap.
+
+## Both emails work; only the Mens email is surely worth sending
+- Found: The split was fair: the chi-square test on group sizes gives p = 0.90 (a problem would be p < 0.001).
+  Mens: 267 buyers of 21,307 customers, conversion 1.25% vs 0.57% in control, a gap of +0.68 pp. p-value below 0.0001. 95% confidence interval: +0.50 to +0.86 pp.
+  Womens: 189 buyers of 21,387 customers, conversion 0.88% vs 0.57% in control, a gap of +0.31 pp. p-value 0.00016. 95% confidence interval: +0.15 to +0.47 pp.
+  Visits: Mens +7.66 pp (6.99 to 8.32), Womens +4.52 pp (3.89 to 5.16).
+- Why it matters: Both p-values are below the threshold, so both gaps are not just luck: both emails really worked. We set the rule that an email is only worth sending if it adds at least +0.3 pp. For Mens, even the lowest value of the range (+0.50) is 0.20 pp above the line, so it is surely worth sending. For Womens, about half of the range is below +0.3 pp, so we are not sure it is worth sending.
+  For visits, both ranges are far from 0, so there is no doubt there.
+- Decision: Mens is the main candidate to send. For Womens, calculate the money in the targeting step: does even +0.15 pp pay for the email cost?
+
+## Both emails increase spend per customer
+- Found: Mens: spend per customer +$0.77 vs control.
+  Bootstrap 95% range: +$0.49 to +$1.06. t-test range: +$0.49 to +$1.05.
+  Womens: spend per customer +$0.42 vs control.
+  Bootstrap 95% range: +$0.16 to +$0.68. t-test range: +$0.17 to +$0.68.
+- Why it matters: Spend is mostly $0 and not bell-shaped, so I used the bootstrap and checked it with a t-test. The two methods give almost the same ranges (difference below 1 cent), so the result is solid: it doesn't depend on which method I use. No range includes 0, so both emails really increase spend; it is not luck.
+- Decision: Use these spend lifts in the money calculation in the targeting step.
