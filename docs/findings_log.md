@@ -82,3 +82,9 @@ Each entry: what I found, why it matters, and what I decided.
   Bootstrap 95% range: +$0.16 to +$0.68. t-test range: +$0.17 to +$0.68.
 - Why it matters: Spend is mostly $0 and not bell-shaped, so I used the bootstrap and checked it with a t-test. The two methods give almost the same ranges (difference below 1 cent), so the result is solid: it doesn't depend on which method I use. No range includes 0, so both emails really increase spend; it is not luck.
 - Decision: Use these spend lifts in the money calculation in the targeting step.
+
+## Both emails are profitable; Mens brings almost twice as much
+- Found: If we send one email to all 64,000 customers (assumptions: $0.01 per email, 40% margin), the Mens email brings $19,067 extra profit and the Womens email $10,224. Even at the lowest end of its spend range (+$0.16 per customer), the Womens email still earns $0.054 per customer after costs, about $3,460 in total. The Womens email would lose money only if one email cost more than about $0.17 (or about $0.06 at the lowest spend estimate).
+- Why it matters: Both emails pay for themselves easily, so email cost is not a risk.
+  This answers the open question from the conversion results: even with the weakest lift, the Womens email still pays for its cost.
+- Decision: Mens is the main choice. Next, check whether targeting (the best email for each customer group) beats sending the Mens email to everyone, and test what happens if the cost and margin assumptions are wrong.
