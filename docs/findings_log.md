@@ -88,3 +88,9 @@ Each entry: what I found, why it matters, and what I decided.
 - Why it matters: Both emails pay for themselves easily, so email cost is not a risk.
   This answers the open question from the conversion results: even with the weakest lift, the Womens email still pays for its cost.
 - Decision: Mens is the main choice. Next, check whether targeting (the best email for each customer group) beats sending the Mens email to everyone, and test what happens if the cost and margin assumptions are wrong.
+
+## Targeting by customer group is not worth it
+- Found: The best email is Mens for "both" and "mens_only" customers. For "womens_only", Womens wins by less than one cent per customer ($0.243 vs $0.236).
+  Targeting earns $19,197 vs $19,014 for sending the Mens email to everyone: only $183 more (about 1%).
+- Why it matters: The only gain comes from a tiny difference that could easily be luck. Sending two different emails adds work for almost no extra profit.
+- Decision: Recommend sending the Mens email to everyone.
