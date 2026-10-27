@@ -39,6 +39,7 @@ best_email_by_segment AS (
             ELSE 'womens'
         END                                                                         AS best_email,
         mens_profit_per_customer * customers                                        AS profit_mens_to_all,
+        womens_profit_per_customer * customers                                      AS profit_womens_to_all,
         -- profit of the best choice: the higher of the two, or 0 if we send nothing
         GREATEST(mens_profit_per_customer, womens_profit_per_customer, 0) * customers AS profit_targeted
     FROM arm_profit_per_customer
@@ -50,11 +51,12 @@ SELECT
     ROUND(womens_profit_per_customer, 3)  AS womens_profit_per_customer,
     best_email,
     ROUND(profit_mens_to_all, 2)          AS profit_mens_to_all,
+    ROUND(profit_womens_to_all, 2)			AS profit_womens_to_all,
     ROUND(profit_targeted, 2)             AS profit_targeted
 FROM best_email_by_segment
 UNION ALL
 SELECT 'TOTAL', SUM(customers), NULL, NULL, NULL, 
-ROUND(SUM(profit_mens_to_all), 2), ROUND(SUM(profit_targeted), 2)
+ROUND(SUM(profit_mens_to_all), 2), ROUND(SUM(profit_womens_to_all), 2), ROUND(SUM(profit_targeted), 2)
 FROM best_email_by_segment;
 -- Result:
 -- The Mens email is the best choice for "both" and "mens_only" customers.
