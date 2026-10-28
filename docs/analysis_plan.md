@@ -39,7 +39,7 @@ I did not look at any results by group.
 
 ## 4. Hypotheses (main metric)
 
-For each email (Mens and Womens) compared with no email:
+For each email (Mens and Womens) compared with No email:
 
 - H0: the email does not change the conversion rate.
 - H1: the email changes the conversion rate (up or down).
@@ -68,9 +68,7 @@ zip code type, channel, history segment, recency band.
 
 **Smallest effect worth acting on:** +0.3 percentage points of conversion compared with no email.
 
-With about 21,300 customers per group, α = 0.025 per test (Holm, worst case) and power = 80%,
-this is the smallest lift the experiment can reliably detect (MDE).
-I don't know the control conversion rate before the analysis, so I calculate it for three guesses:
+With about 21,300 customers in each group, I checked the smallest lift this test can find reliably. I used the strict threshold of 0.025 (because I test two emails), and I wanted the test to catch a real lift 8 times out of 10. The answer depends on the conversion rate without an email, which I didn't know before the analysis, so I calculated it for three guesses:
 
 | If control conversion is | Smallest detectable lift | As a relative lift |
 | --- | --- | --- |
@@ -91,8 +89,7 @@ These are my **assumptions**, not data. The dataset has no costs.
 
 Extra profit = extra spend × margin − number of emails × cost per email.
 
-To test how much the answer depends on these guesses, I recalculate with each one
-halved and doubled. If the best choice changes, I report that.
+To check how much the answer depends on these guesses, I recalculate the profit with lower and higher values: an email cost of $0.005 and $0.02 (instead of $0.01), and a margin of 20% and 80% (instead of 40%). If the best choice changes, I report that.
 
 ## 9. Known limitations
 

@@ -1,6 +1,6 @@
 # Data Quality Report
 
-- Generated: 2026-10-14 13:58
+- Generated: 2026-10-14
 - Source: `data/raw/hillstrom.csv`
 - Rows checked: 64,000
 - Overall status: **PASSED**
